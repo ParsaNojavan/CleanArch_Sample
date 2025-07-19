@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
+using CMS.Application.Commands;
 using CMS.Application.Interfaces.Repository;
 using CMS.Application.Models;
+using CMS.Application.Queries;
 using CMS.Domain.Domain;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CMS.Api.Controllers;
@@ -10,13 +13,11 @@ namespace CMS.Api.Controllers;
 [Route("/api/category")]
 public class CategoryController : BaseController
 {
-    private readonly ICategoryRepository _categoryRepository;
-    private readonly IMapper _mapper;
+    private readonly IMediator _mediator;
     public CategoryController(ICategoryRepository categoryRepository
-        , IMapper mapper)
+        , IMapper mapper,IMediator mediator)
     {
-        _categoryRepository = categoryRepository;
-        _mapper = mapper;
+        _mediator = mediator;
     }
 
     [HttpGet("GetCategory/{id}")]
@@ -24,8 +25,9 @@ public class CategoryController : BaseController
     {
         try
         {
-            var category = await _categoryRepository.GetById(id);
-            return CustomOk(category);
+            var query = new GetCategoryByIdQuery(){Id = id};
+            var result = await _mediator.Send(query);
+            return CustomOk(result);
         }
         catch (Exception e)
         {
@@ -33,13 +35,14 @@ public class CategoryController : BaseController
         }
     }
 
-    [HttpGet("/GetCategories")]
+    [HttpGet("GetAllCategories")]
     public async Task<IActionResult> GetCategories()
     {
         try
         {
-            var category = await _categoryRepository.GetAll();
-            return CustomOk(category);
+            var query = new GetAllCategoriesQuery();
+            var result = await _mediator.Send(query);
+            return CustomOk(result);
         }
         catch (Exception e)
         {
@@ -52,7 +55,11 @@ public class CategoryController : BaseController
     {
         try
         {
-            await _categoryRepository.Add(_mapper.Map<Domain.Domain.Category>(category));
+            var command = new CategoryAddCommand()
+            {
+                Title = category.Title
+            };
+            var result = await _mediator.Send(command);
             return CustomOk(true);
         }
         catch (Exception e)
@@ -74,8 +81,13 @@ public class CategoryController : BaseController
 
         try
         {
-            await _categoryRepository.Edit(_mapper.Map<Domain.Domain.Category>(category));
-            return CustomOk(data:category,message:"Category updated successfully");
+            var command = new CategoryEditCommand()
+            {
+                Id = id,
+                Title = category.Title
+            };
+            var result = await _mediator.Send(command);
+            return CustomOk(data:result,message:"Category updated successfully");
         }
         catch (Exception e)
         {

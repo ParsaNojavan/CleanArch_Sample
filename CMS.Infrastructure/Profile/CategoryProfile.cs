@@ -9,5 +9,7 @@ public class CategoryProfile : Profile
         CreateMap<CMS.Infrastructure.Data.Category, CMS.Domain.Domain.Category>();
         CreateMap<CMS.Application.Models.CategoryAddDto, CMS.Domain.Domain.Category>();
         CreateMap<CMS.Application.Models.CategoryEditDto, CMS.Domain.Domain.Category>();
+        CreateMap<Application.Commands.CategoryAddCommand, CMS.Domain.Domain.Category>();
+        CreateMap<Application.Commands.CategoryEditCommand, CMS.Domain.Domain.Category>();
     }
 }
