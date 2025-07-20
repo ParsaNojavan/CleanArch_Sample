@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CMS.Application.Models;
+namespace CMS.Application.Models.Dto.CategoryDto;
 
 public class CategoryEditDto
 {

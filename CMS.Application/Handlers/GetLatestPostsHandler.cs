@@ -1,4 +1,4 @@
-﻿using CMS.Application.Interfaces.Repository;
+﻿ using CMS.Application.Interfaces.Repository;
 using CMS.Application.Queries;
 using CMS.Domain.Domain;
 using MediatR;

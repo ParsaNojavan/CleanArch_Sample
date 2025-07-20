@@ -1,4 +1,4 @@
-﻿namespace CMS.Application.Models.PostDto;
+﻿namespace CMS.Application.Models.Dto.PostDto;
 
 public class AddPostResponse
 {

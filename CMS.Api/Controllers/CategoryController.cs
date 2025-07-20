@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using CMS.Application.Commands;
 using CMS.Application.Interfaces.Repository;
-using CMS.Application.Models;
+using CMS.Application.Models.Dto.CategoryDto;
 using CMS.Application.Queries;
 using CMS.Domain.Domain;
 using MediatR;

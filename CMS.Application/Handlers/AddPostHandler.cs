@@ -1,6 +1,6 @@
 ﻿using CMS.Application.Commands;
 using CMS.Application.Interfaces.Repository;
-using CMS.Application.Models.PostDto;
+using CMS.Application.Models.Dto.PostDto;
 using MediatR;
 
 namespace CMS.Application.Handlers;

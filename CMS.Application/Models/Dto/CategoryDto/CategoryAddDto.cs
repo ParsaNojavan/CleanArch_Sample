@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CMS.Application.Models
+namespace CMS.Application.Models.Dto.CategoryDto
 {
     public class CategoryAddDto
     {

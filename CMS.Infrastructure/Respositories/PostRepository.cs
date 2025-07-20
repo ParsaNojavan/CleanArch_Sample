@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using CMS.Application.Commands;
 using CMS.Application.Interfaces.Repository;
-using CMS.Application.Models.PostDto;
 using CMS.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,5 +29,12 @@ public class PostRepository : IPostRepository
         await _context.Posts.AddAsync(data);
         await _context.SaveChangesAsync();
         return data.Id;
+    }
+
+    public async Task<int> Edit(Domain.Domain.Post post)
+    {
+        _context.Update(post);
+        _context.SaveChangesAsync();
+        return post.Id;
     }
 }

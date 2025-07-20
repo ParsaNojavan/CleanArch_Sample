@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CMS.Application.Models.PostDto;
+namespace CMS.Application.Models.Dto.PostDto;
 
 public class PostAddDto
 {

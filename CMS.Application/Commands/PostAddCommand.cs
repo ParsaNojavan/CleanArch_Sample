@@ -1,4 +1,4 @@
-﻿using CMS.Application.Models.PostDto;
+﻿using CMS.Application.Models.Dto.PostDto;
 using MediatR;
 
 namespace CMS.Application.Commands;
